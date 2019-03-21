@@ -8,10 +8,23 @@
 
 **Link to work:** 
 
-### Day 0: March  19, 2019 
+### Day 1: March  19, 2019 
 
-**Today's Progress**: 
+**Today's Progress**: Ruby on Rails のviewで、json出力する場合のテンプレートを作成。 => json出力する時はcontrollerで出力することが多いよう。主処理をhelperに渡して、controllerでjsonを出力する方向で。
 
 **Thoughts:** 
 
-**Link to work:** 
+**Link to work:**
+
+**refer 
+
+### Day 2: March  20, 2019 
+
+**Today's Progress**: rails migrationで新規のcolumnを追加。
+```rails generate migration add_altitude_to_area_blocks lower_alt:integer upper_alt:integer```
+
+**Thoughts:** 
+
+**Link to work:**
+
+**refer 
