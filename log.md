@@ -27,4 +27,4 @@
 
 **Link to work:**
 
-**refer 
+**refer [vimでのマクロ操作](https://qiita.com/Go-zen-chu/items/5464fb6b9e6b38c958bd)
