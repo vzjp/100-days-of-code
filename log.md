@@ -2,13 +2,17 @@
 
 ### Day 3: March  23-24, 2019 
 
-**Today's Progress**: 図書情報館での情報収集（２３日）とturbolinksの適用（２４日）。turbolinksが適用されていた場合、ページのリロードが行われないため、jQueryの`$(function(){ 処理 });`が効かなかった。そこで、`$(document).on('turbolinks:load', function(){ 処理 });`で解決。
+**Today's Progress**: 
+- 図書情報館での情報収集（２３日）とturbolinksの適用（２４日）。turbolinksが適用されていた場合、ページのリロードが行われないため、jQueryの`$(function(){ 処理 });`が効かなかった。そこで、`$(document).on('turbolinks:load', function(){ 処理 });`で解決。
+- gitでログを見たい時はほとんどが`git log --oneline --all --graph`のため、アエリアスを設定した。
 
 **Thoughts:**  javascriptの実行されるタイミングをよく理解していない。
 
 **Link to work:**
 
-**refer [Rails5でjqueryを動かす方法](https://qiita.com/hiroyayamamo/items/b258acbaa089d9482c8a)
+**refer
+- [Rails5でjqueryを動かす方法](https://qiita.com/hiroyayamamo/items/b258acbaa089d9482c8a)
+- [gitで便利なエイリアス達](https://qiita.com/peccul/items/90dd469e2f72babbc106)
 
 
 ### Day 2: March  20, 2019 
