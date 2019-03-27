@@ -1,5 +1,86 @@
 # 100 Days Of Code - Log
 
+### Day 4: March  27, 2019 
+
+**Today's Progress**: 
+- 今までgeojsonの生成をcontrollerで行なっていたが、MVCのポリシーからするとしっくりきていなかった。Ruby on Rails5アプリケーショんプログラミングで学び、viewで生成を行うように変更を行なった。
+
+before:areas_controller.rb
+```
+def geojson
+    @area = Area.find(params[:id])
+    @area_blocks = @area.area_blocks
+    geojson = { "type" => "FeatureCollection",
+                "features" => [],
+              }
+    @area_blocks.each_with_index do |block, index|
+      geojson["features"]<<{"type" => "Feature",
+                            "properties" => {
+                              "_color" => "#000000",
+                              "_opacity" => 0.4980392156862745,
+                              "_weight" => 3,
+                              "_fillColor" => "#ff0000",
+                              "_fillOpacity" => 0.4980392156862745
+                              },
+                            "geometry" => {
+                              "type" => "Polygon",
+                              "coordinates" => [],
+                              }
+                            }
+      points = []
+      block.boundary_points.order(:sequence).each do |point|
+        points<<[point[:longitude], point[:latitude]]
+      end
+      geojson["features"][index]["geometry"]["coordinates"]<<points
+      geojson["features"][index]["properties"]["name"] = block.area.icao_abbreviation.kanji_name
+      unless Rails.env.production?
+        geojson["features"][index]["properties"]["id"] = block.id
+      end
+      geojson["features"][index]["properties"]["upper_altitude"] = block.upper_alt
+      geojson["features"][index]["properties"]["lower_altitude"] = block.lower_alt
+    end
+    render :json => geojson
+  end
+```
+after:geojson.json.jbuilder
+```
+json.type "FeatureCollection"
+json.features do
+  json.array! @area.area_blocks do |block|
+    json.type "Feature"
+    json.properties do
+      json._color       "#000000"
+      json._opacity     0.4980392156862745
+      json._weight      3
+      json._fillColor   "#ff0000"
+      json._fillOpacity 0.4980392156862745
+      unless Rails.env.production?
+        json.id block.id
+      end
+      json.name           block.area.icao_abbreviation.kanji_name
+      json.upper_altitude block.upper_alt
+      json.lower_altitude block.lower_alt
+    end
+    json.geometry do
+      json.type "Polygon"
+      points = []
+      block.boundary_points.order(:sequence).each do |point|
+        points<<[point[:longitude], point[:latitude]]
+      end
+      json.coordinates [points]
+    end
+  end
+end
+```
+
+**Thoughts:**  便利なテンプレートを用いると、見た目もスッキリ、書きやすい。
+
+**Link to work:**
+
+**refer**
+
+
+
 ### Day 3: March  23-24, 2019 
 
 **Today's Progress**: 
